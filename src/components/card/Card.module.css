@@ -20,12 +20,15 @@
 
 .cardTitle {
   margin: 0;
-  font-size: 1.1rem;
   font-weight: bold;
   font: 1.1em sans-serif;
 }
 
-.cardRuntime {
+.cardYear {
   margin: 0;
   color: #888;
+}
+.cardType{
+  margin: 0;
+  font-family: sans-serif;
 }

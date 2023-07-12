@@ -1,6 +1,7 @@
 import React from 'react';
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styles from './Card.module.css'
 import Link from 'next/link';
 
@@ -15,9 +16,13 @@ type CardProps = {
 }
 
 const Card: React.FC<CardProps> = ({poster,title,type,year,imdbID}:CardProps) => {
+
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/${type}/${imdbID}`);
+  }
   return (
-    <div className={`${styles.card} ${inter.className}`}>
-      <Link href={"/"}>
+    <div className={`${styles.card} ${inter.className}`} onClick={handleClick}>
         <div>
           <Image
             src={
@@ -33,9 +38,12 @@ const Card: React.FC<CardProps> = ({poster,title,type,year,imdbID}:CardProps) =>
         </div>
         <div className={styles.cardContent}>
           <h2 className={styles.cardTitle}>{title}</h2>
-          <p className={styles.cardRuntime}>{year}</p>
+          <p className={styles.cardYear}>{year}</p>
+          <div className={styles.cardType}>
+          <p>{type}</p>
+
+          </div>
         </div>
-      </Link>
     </div>
   );
 };
