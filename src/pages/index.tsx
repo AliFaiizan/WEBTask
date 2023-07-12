@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Search.module.css'
@@ -42,6 +42,7 @@ export default function Search() {
               onChange={(e) => {
                 setTerm(e.target.value);
               }}
+              type="text"
               placeholder="Search Movies / TV Shows"
             />
           </form>
@@ -50,12 +51,20 @@ export default function Search() {
         <div className={styles.moviesContainer}>
           {error && <h3>{error}</h3>}
           {loading && <h3>Loading...</h3>}
-          <div>
             {!error &&
               !loading &&
-              data?.Search.map(({imdbID,Poster,Title,Type,Year}: any) => <Card key={imdbID} poster={Poster} title={Title} type={Type} year={Year} imdbID={imdbID} />)}
-
-          </div>
+              data?.Search?.map(
+                ({ imdbID, Poster, Title, Type, Year }: any) => (
+                  <Card
+                    key={imdbID}
+                    poster={Poster}
+                    title={Title}
+                    type={Type}
+                    year={Year}
+                    imdbID={imdbID}
+                  />
+                )
+              )}         
         </div>
       </main>
     </>

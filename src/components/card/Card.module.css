@@ -1,7 +1,8 @@
 .card {
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 200px;
+  height: 400px;
+  padding:5px;
+  margin: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -9,6 +10,8 @@
 .cardImage {
   width: 100%;
   height: auto;
+  border-radius: 15px;
+  object-fit: overflow;
 }
 
 .cardContent {
@@ -17,8 +20,9 @@
 
 .cardTitle {
   margin: 0;
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: bold;
+  font: 1.1em sans-serif;
 }
 
 .cardRuntime {
