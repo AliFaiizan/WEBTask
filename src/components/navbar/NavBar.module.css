@@ -8,18 +8,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #326660;
   color: #fff;
 }
 
 .navLinks a {
   color: #fff;
+  font-family: sans-serif;
   text-decoration: none;
 }
 
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   padding: 1rem;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #7d1006;
+
 }
 
 .menu {
@@ -28,14 +34,22 @@
   font-size: 1.2rem;
 }
 
+.active{
+  background-color: #7d1006;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
 .menu li:hover {
-  background-color: #3c7d70;
+  background-color: #7d1006;
 }
 
 .menu li {
+  font-family: sans-serif;
+  font-weight: bold;
   padding: 0.5rem 1rem;
   list-style: none;
-  transition: 300ms ease;
+  transition: 150ms ease;
   border-radius: 5px;
 }
 
