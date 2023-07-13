@@ -16,18 +16,22 @@ export default function Search() {
   const router = useRouter();
 
   const [term, setTerm] = useState<string>(""); // search term
+  const [submitted, setSubmitted] = useState<boolean>(false); // submitted or not
   const [currentpage, setCurrentPage] = useState<number>(1); // page number
   const [totalResults, setTotalResults] = useState<number>(10); // total results
-  const { searchMovies } = useActions();   // we used this for fetching data from the api and setting the value in store
+  const { searchMovies } = useActions();// we used this for fetching data from the api and setting the value in store
+
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //this is implemented with redux functionality otherwise we can use getServerSideProps as commented below
     searchMovies(term);
+    setSubmitted(true);
     router.replace(`/?term=${term}&page=${currentpage}`);
   }; 
 
   const {data,error,loading}= useSelector((state:any) => state.movies); // we used this for getting the data from the store
-
+  console.log(data);
   return (
     <>
       <Head>
@@ -55,7 +59,7 @@ export default function Search() {
           {loading && <h3>Loading...</h3>}
             {!error &&
               !loading &&
-              data?.Search?.length===0? <h3>No results found.</h3> : data?.Search?.map(
+               submitted && data?.Search===undefined? <h3>Sorry Could Not Find Anything</h3> : data?.Search?.map(
                 ({ imdbID, Poster, Title, Type, Year }: any) => (
                   <Card
                     key={imdbID}
