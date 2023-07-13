@@ -40,3 +40,20 @@
   margin-top: 20px;
   width: 100%;
 }
+
+
+@media (max-width: 600px) {
+  .main {
+    padding: 1rem;
+  }
+  .container{
+    width: 100%;
+  }
+  .search {
+    width: 100%;
+  }
+  .moviesContainer{
+    width: 100%;
+  } 
+}
+    
