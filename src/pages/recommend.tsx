@@ -15,7 +15,7 @@ export default function Recommend() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         {/* update with recommendations page code */}
-        Edit file [src/pages/recommend.tsx] to update this page with recommendations logic.
+       OUR TOP PICKS
       </main>
     </>
   )
