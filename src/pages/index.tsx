@@ -3,35 +3,35 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Search.module.css'
-import { useSelector } from 'react-redux'
-import { useActions } from '@/hooks/useActions'
-
 import Card from '@/components/card/Card'
+
+//for redux
+// import { useSelector } from 'react-redux'
+// import { useActions } from '@/hooks/useActions'
+
 
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Search() {
-
+export default function Search({data}:any) {
   const router = useRouter();
 
   const [term, setTerm] = useState<string>(""); // search term
   const [submitted, setSubmitted] = useState<boolean>(false); // submitted or not
   const [currentpage, setCurrentPage] = useState<number>(1); // page number
   const [totalResults, setTotalResults] = useState<number>(10); // total results
-  const { searchMovies } = useActions();// we used this for fetching data from the api and setting the value in store
+  // const { searchMovies } = useActions();// we used this for fetching data from the api and setting the value in store
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //this is implemented with redux functionality otherwise we can use getServerSideProps as commented below
-    searchMovies(term);
+    //this is implemented with redux functionality
+    // searchMovies(term);
     setSubmitted(true);
-    router.replace(`/?term=${term}&page=${currentpage}`);
+    router.push(`/?term=${term}&page=${currentpage}`);
   }; 
 
-  const {data,error,loading}= useSelector((state:any) => state.movies); // we used this for getting the data from the store
-  console.log(data);
+  // const {data,error,loading}= useSelector((state:any) => state.movies); // we used this for getting the data from the store
   return (
     <>
       <Head>
@@ -54,43 +54,61 @@ export default function Search() {
             />
           </form>
         </div>
+        <div className={styles.results}>
+          {data.Response === 'True' 
+            ?(
+              <>
+                <b>Total Results:{data.totalResults}</b>
+                <br />
+                <hr />
+              </>
+            )
+            :
+            <h3>{data.Error}</h3>
+          }
+        </div>
         <div className={styles.moviesContainer}>
-          {error && <h3>{error}</h3>}
-          {loading && <h3>Loading...</h3>}
-            {!error &&
-              !loading &&
-               submitted &&
-               data?.Search===undefined 
-               ? <h3>Sorry Could Not Find Anything</h3> 
-               : data?.Search?.map(
-                ({ imdbID, Poster, Title, Type, Year }: any) => (
-                  <Card
-                    key={imdbID}
-                    poster={Poster}
-                    title={Title}
-                    type={Type}
-                    year={Year}
-                    imdbID={imdbID}
-                  />
-                )
-              )}        
+          {data?.Search?.map(({ imdbID, Poster, Title, Type, Year }: any) => (
+              <Card
+                key={imdbID}
+                poster={Poster}
+                title={Title}
+                type={Type}
+                year={Year}
+                imdbID={imdbID}
+              />
+            ))
+          }
         </div>
       </main>
     </>
   );
 }
 
-// export async function getServerSideProps({ctx}:any) {
 
-//   const {term,page} = ctx.query;
-//   const res = await fetch(
-//     `http://www.omdbapi.com/?apikey=dfa8820e&s=${term}&page=${page}`
-//   );
-//   const data = await res.json();
+export async function getServerSideProps(ctx:any) {
 
-//   return {
-//     props: {
-//       data
-//     },
-//   };
-// }
+  const {term,page=0} = ctx.query;
+  if(page>0){
+    const res = await fetch(
+      `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&s=${term}&page=${page}`
+    );
+    const data = await res.json();
+
+    return {
+      props: {
+        data,
+      },
+    };
+  }
+  else{
+    return {
+      props: {
+        data:{},
+      },
+    };
+
+  }
+}
+
+

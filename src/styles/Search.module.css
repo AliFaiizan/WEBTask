@@ -32,6 +32,15 @@
   color: #888;
   font-size: 20px;
 }
+.results{
+  width: 100%;
+  color: #888;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
 .moviesContainer{
   display: flex;
