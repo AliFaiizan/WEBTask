@@ -8,11 +8,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
 }
 
 .navLinks a {
-  color: #fff;
   font-family: sans-serif;
   text-decoration: none;
 }
@@ -24,8 +22,12 @@
 }
 
 .logo span {
-  color: #7d1006;
+  color: #87c7f7;
 
+}
+
+.navBarItems{
+  color: #717682;
 }
 
 .menu {
@@ -35,13 +37,13 @@
 }
 
 .active{
-  background-color: #7d1006;
+  background-color: #87c7f7;
   font-weight: bold;
   border-radius: 5px;
 }
 
 .menu li:hover {
-  background-color: #7d1006;
+  background-color:#87c7f7;
 }
 
 .menu li {

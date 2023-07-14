@@ -35,10 +35,10 @@
     font-family: sans-serif;
 }
 .type{
-    background-color: #7d1006;
+    background-color: #87c7f7;
     width: fit-content;
     font-weight: 500;
-    color: #c1c2c5;
+    color: #717682;
     padding: .5rem;
     border-radius: 10px;
 }
@@ -64,15 +64,15 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    color: #c1c2c5;
-    background-color: #7d1006;
+    color: #717682;
+    background-color: #87c7f7;
     transition: 150ms ease;
 }
 
 .banner h1{
     font-size: 3rem;
     font-weight: bold;
-    color: #c1c2c5;
+    color: #717682;
 }
 .plot{
     font-size: 1rem;

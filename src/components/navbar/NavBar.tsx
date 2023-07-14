@@ -28,7 +28,7 @@ const NavBar: React.FC<NavBarProps> = () => {
                 setActive("search");
               }}
             >
-              <li>Search</li>
+              <li className={styles.navBarItems}>Search</li>
             </div>
           </Link>
           <Link href="/recommend">
@@ -38,7 +38,7 @@ const NavBar: React.FC<NavBarProps> = () => {
                 setActive("recommend");
               }}
             >
-              <li>Recommendations</li>
+              <li className={styles.navBarItems}>Recommendations</li>
             </div>
           </Link>
         </div>
