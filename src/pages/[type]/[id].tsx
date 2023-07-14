@@ -26,13 +26,13 @@ type MovieProps= {
 }
 
 const Movie = ({data}:MovieProps) => {
-    const {Poster,Title,Plot,Type,Released,Genre,Runtime,imdbRating,Metascore,imdbVotes,Actors,Director,Writer,Language,Country,Awards,BoxOffice} = data;
+    const {Poster="",Title,Plot,Type,Released,Genre,Runtime,imdbRating,Metascore,imdbVotes,Actors,Director,Writer,Language,Country,Awards,BoxOffice} = data;
   return (
     <div>
       <div className={styles.bannerDark}></div>
       <Image
         className={styles.banner}
-        src={Poster}
+        src={Poster !== "N/A" ? Poster : "/movie-placeholder.jpg"}
         alt="Picture of the poster"
         width={1000}
         height={1000}
@@ -40,7 +40,7 @@ const Movie = ({data}:MovieProps) => {
       <div className={styles.bannerContent}>
         <div>
           <Image
-            src={Poster}
+            src={Poster !== "N/A" ? Poster : "/movie-placeholder.jpg"}
             alt="Picture of the poster"
             width={300}
             height={400}
@@ -55,8 +55,7 @@ const Movie = ({data}:MovieProps) => {
             <h1>{Title}</h1>
             <div className={styles.type}>{Type}</div>
             <div className={styles.subTitle}>
-              <p> {Released} </p> | <p> {Genre} </p> |
-              <p> {Runtime} </p>
+              <p> {Released} </p> | <p> {Genre} </p> |<p> {Runtime} </p>
             </div>
           </div>
           <br />
