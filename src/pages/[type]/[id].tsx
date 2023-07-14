@@ -26,7 +26,7 @@ type MovieProps= {
 }
 
 const Movie = ({data}:MovieProps) => {
-    const {Poster,Title,Plot,Type,Released,Genre,Runtime,imdbRating,Metascore,imdbVotes,imdbID,Actors,Director,Writer,Language,Country,Awards,BoxOffice} = data;
+    const {Poster,Title,Plot,Type,Released,Genre,Runtime,imdbRating,Metascore,imdbVotes,Actors,Director,Writer,Language,Country,Awards,BoxOffice} = data;
   return (
     <div>
       <div className={styles.bannerDark}></div>

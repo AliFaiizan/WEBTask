@@ -21,7 +21,7 @@
 .cardTitle {
   margin: 0;
   font-weight: bold;
-  font: 1.1em sans-serif;
+  font-size: 1rem;
 }
 
 .cardYear {

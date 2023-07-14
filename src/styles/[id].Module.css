@@ -38,7 +38,7 @@
     background-color: #7d1006;
     width: fit-content;
     font-weight: 500;
-    color: #bcb6b6;
+    color: #c1c2c5;
     padding: .5rem;
     border-radius: 10px;
 }
@@ -64,7 +64,7 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    color: #fff;
+    color: #c1c2c5;
     background-color: #7d1006;
     transition: 150ms ease;
 }
@@ -72,12 +72,12 @@
 .banner h1{
     font-size: 3rem;
     font-weight: bold;
-    color: #fff;
+    color: #c1c2c5;
 }
 .plot{
     font-size: 1rem;
     font-weight: 500;
-    color: #bcb6b6;
+    color: #c1c2c5;
     margin: 1rem 0rem;
 }
 .castCrew{
@@ -97,7 +97,7 @@
 }
 .castCrew p{
     font-weight: 500;
-    color: #bcb6b6;
+    color: #c1c2c5;
 }
 
 .awardRating{
@@ -117,7 +117,7 @@
 
 .awardRating p{
     font-weight: 500;
-    color: #bcb6b6;
+    color: #c1c2c5;
 }
 @media (max-width: 900px){
     .subTitle{

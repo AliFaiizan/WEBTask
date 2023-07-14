@@ -59,7 +59,10 @@ export default function Search() {
           {loading && <h3>Loading...</h3>}
             {!error &&
               !loading &&
-               submitted && data?.Search===undefined? <h3>Sorry Could Not Find Anything</h3> : data?.Search?.map(
+               submitted &&
+               data?.Search===undefined 
+               ? <h3>Sorry Could Not Find Anything</h3> 
+               : data?.Search?.map(
                 ({ imdbID, Poster, Title, Type, Year }: any) => (
                   <Card
                     key={imdbID}
@@ -84,10 +87,6 @@ export default function Search() {
 //     `http://www.omdbapi.com/?apikey=dfa8820e&s=${term}&page=${page}`
 //   );
 //   const data = await res.json();
-
-//   // const data = fetch("http://www.omdbapi.com/?s=batman&apikey=*******")
-//   // .then((res) => res.json())
-//   // .then((data) => data);
 
 //   return {
 //     props: {
