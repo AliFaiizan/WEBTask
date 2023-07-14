@@ -27,9 +27,9 @@ export default function Recommend({data}:any) {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         {/* update with recommendations page code */}
-        OUR Recommendations
+        <h1>Recommendations</h1>
         <div className={styles.moviesContainer}>
-          {data.Response === "True" && (
+          {data?.map(({ imdbID, Poster, Title, Type, Year }: any) => (
             <Card
               key={imdbID}
               poster={Poster}
@@ -38,7 +38,7 @@ export default function Recommend({data}:any) {
               year={Year}
               imdbID={imdbID}
             />
-          )}
+          ))}
         </div>
       </main>
     </>
@@ -46,14 +46,23 @@ export default function Recommend({data}:any) {
 }
 
 export async function getServerSideProps(ctx: any) {
-
-    let term = pad(Math.floor(Math.random() * 2155529 + 1), 7);
-    console.log(term)
-    const res = await fetch(
-      `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=tt${term}`
-    );
-    const data = await res.json();
-
+  
+    let urls: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      let term=pad(Math.floor(Math.random() * 2155529 + 1),7)
+      urls.push(
+        `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=tt${term}`
+      );
+    }
+    
+    const dataPromises = urls.map((url) => {
+      return fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          return data;
+        });
+    })
+    const data: any[] = await Promise.all(dataPromises);
     return {
       props: {
         data,

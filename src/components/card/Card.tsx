@@ -41,7 +41,6 @@ const Card: React.FC<CardProps> = ({poster,title,type,year,imdbID}:CardProps) =>
           <p className={styles.cardYear}>{year}</p>
           <div className={styles.cardType}>
           <p>{type}</p>
-
           </div>
         </div>
     </div>

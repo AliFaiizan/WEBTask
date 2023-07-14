@@ -16,9 +16,12 @@ const NavBar: React.FC<NavBarProps> = () => {
 
   return (
     <nav className={[styles.navbar, inter.className].join(" ")}>
-      <div className={styles.logo}>
-        OM<span>DB</span>
-      </div>
+      <Link href="/">
+        <div className={styles.logo}>
+          OM<span>DB</span>
+        </div>
+      </Link>
+
       <ul className={styles.navLinks}>
         <div className={styles.menu}>
           <Link type="submit" href="/">
