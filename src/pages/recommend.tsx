@@ -14,8 +14,6 @@ function pad(number:number, length:number) {
 }
 
 export default function Recommend({data}:any) {
-   
-  const {Poster,Title,Type,Year,imdbID} = data;
 
   return (
     <>

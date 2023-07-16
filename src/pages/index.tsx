@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Search.module.css'
 import Card from '@/components/card/Card'
+import Pagination from '@/components/pagination/Pagination'
 
 //for redux
 // import { useSelector } from 'react-redux'
@@ -13,23 +14,24 @@ import Card from '@/components/card/Card'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Search({data}:any) {
-  const router = useRouter();
+export default function Search({data,currentPage}:any) {
+  const router:NextRouter = useRouter();
 
   const [term, setTerm] = useState<string>(""); // search term
-  const [submitted, setSubmitted] = useState<boolean>(false); // submitted or not
-  const [currentpage, setCurrentPage] = useState<number>(1); // page number
-  const [totalResults, setTotalResults] = useState<number>(10); // total results
+
+  // const [currentpage, setCurrentPage] = useState<number>(currentPage=1); // page number
+  // const [totalResults, setTotalResults] = useState<number>(data.totalResults); // total results
   // const { searchMovies } = useActions();// we used this for fetching data from the api and setting the value in store
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //this is implemented with redux functionality
+    //this is implemented with redux functionali ty
     // searchMovies(term);
-    setSubmitted(true);
-    router.push(`/?term=${term}&page=${currentpage}`);
+    router.push(`/?term=${term}&page=1`);
   }; 
+  
+
 
   // const {data,error,loading}= useSelector((state:any) => state.movies); // we used this for getting the data from the store
   return (
@@ -80,6 +82,8 @@ export default function Search({data}:any) {
             ))
           }
         </div>
+        <Pagination data={data} term={term} currentPage={currentPage}/>
+       
       </main>
     </>
   );
@@ -94,10 +98,10 @@ export async function getServerSideProps(ctx:any) {
       `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&s=${term}&page=${page}`
     );
     const data = await res.json();
-
     return {
       props: {
         data,
+        currentPage:page,
       },
     };
   }
