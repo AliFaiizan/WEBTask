@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Search.module.css'
 import Card from '@/components/card/Card'
 import Pagination from '@/components/pagination/Pagination'
+import Footer from '@/components/footer/Footer'
 
 //for redux
 // import { useSelector } from 'react-redux'
@@ -84,6 +85,7 @@ export default function Search({data,currentPage}:any) {
         </div>
         <Pagination data={data} term={term} currentPage={currentPage}/>
        
+      <Footer />
       </main>
     </>
   );

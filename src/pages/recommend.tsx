@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Recommend.module.css'
 import Card from '@/components/card/Card'
+import Footer from '@/components/footer/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,12 +39,13 @@ export default function Recommend({data}:any) {
             />
           ))}
         </div>
+      <Footer />
       </main>
     </>
   );
 }
 
-export async function getServerSideProps(ctx: any) {
+export async function getStaticProps(ctx: any) {
   
     let urls: string[] = [];
     for (let i = 0; i < 5; i++) {
@@ -65,6 +67,7 @@ export async function getServerSideProps(ctx: any) {
       props: {
         data,
       },
+      revalidate: 86400,
     };
 
 }
