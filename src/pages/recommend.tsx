@@ -45,23 +45,23 @@ export default function Recommend({data}:any) {
   );
 }
 
-export async function getStaticProps(ctx: any) {
-  
+export async function getStaticProps() {
+  try{
     let urls: string[] = [];
     for (let i = 0; i < 5; i++) {
-      let term=pad(Math.floor(Math.random() * 2155529 + 1),7)
+      let term = pad(Math.floor(Math.random() * 2155529 + 1), 7);
       urls.push(
         `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=tt${term}`
       );
     }
-    
     const dataPromises = urls.map((url) => {
       return fetch(url)
         .then((res) => res.json())
         .then((data) => {
           return data;
         });
-    })
+    });
+
     const data: any[] = await Promise.all(dataPromises);
     return {
       props: {
@@ -69,5 +69,9 @@ export async function getStaticProps(ctx: any) {
       },
       revalidate: 86400,
     };
+
+  }catch(e){
+    console.log(e)
+  }
 
 }

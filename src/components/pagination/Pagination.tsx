@@ -38,7 +38,7 @@ const Pagination = ({data,term,currentPage}:PaginationProps) => {
             className={`${styles.button} ${styles.arrow}`}
             onClick={handlePrevPage}
           >
-            {"<<<"}
+            {"<"}
           </button>
         </div>
       )}
@@ -51,7 +51,6 @@ const Pagination = ({data,term,currentPage}:PaginationProps) => {
                 page === thisPage ? styles.active : ""
               }`}
               onClick={() => {
-                console.log({ term, page });
                 router.push(`/?term=${term}&page=${page}`);
               }}
             >
@@ -65,7 +64,7 @@ const Pagination = ({data,term,currentPage}:PaginationProps) => {
             className={`${styles.button} ${styles.arrow}`}
             onClick={handleNextPage}
           >
-            {">>>"}
+            {">"}
           </button>
         </div>
       )}

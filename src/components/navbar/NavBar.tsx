@@ -11,14 +11,13 @@ type NavBarProps = {}
 
 const NavBar: React.FC<NavBarProps> = () => {
 
-   const [active, setActive] = useState("search");
+  const [active, setActive] = useState<string>("search");
   
-
   return (
     <nav className={[styles.navbar, inter.className].join(" ")}>
       <Link href="/">
         <div className={styles.logo}>
-          OM<span>DB</span>
+          OM<span>DB.</span>
         </div>
       </Link>
 

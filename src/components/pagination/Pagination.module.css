@@ -17,7 +17,8 @@
     color: #87c7f7;
 }
 .arrow{
-    color: #87c7f7;
+    color: red;
+    background-color: #fff;
 }
 
 .button:hover{
